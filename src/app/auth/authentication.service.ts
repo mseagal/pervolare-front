@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginResponse } from '@app/interfaces/login.interface';
+import { RegisterRequest } from '@app/interfaces/register.interface';
+import { User } from '@app/interfaces/user/user.interface';
 import { environment } from '@env/environment';
 import { map, Observable, of, tap } from 'rxjs';
 
@@ -44,5 +46,9 @@ export class AuthenticationService {
     // Customize credentials invalidation here
     this.credentialsService.setCredentials();
     return of(true);
+  }
+
+  register(registerRequest: RegisterRequest): Observable<User> {
+    return this.httpClient.post<User>(`${environment.serverUrl}/auth/register`, registerRequest);
   }
 }

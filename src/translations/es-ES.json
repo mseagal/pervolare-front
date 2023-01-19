@@ -8,6 +8,7 @@
   "Home": "Inicio",
   "Logged in as": "Conectado como",
   "Login": "Iniciar sesión",
+  "Register": "Registrar",
   "Logout": "Salir",
   "Password": "Contraseña",
   "Password is required": "Se requiere contraseña",
@@ -19,5 +20,7 @@
   "Create Product": "Crear Producto",
   "Edit Product": "Editar Producto",
   "Create Characteristic": "Crear Atributo",
-  "Edit Characteristic": "Editar Atributo"
+  "Edit Characteristic": "Editar Atributo",
+  "Name": "Nombre",
+  "Cancel": "Cancelar"
 }
