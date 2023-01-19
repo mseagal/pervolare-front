@@ -2,9 +2,28 @@
   <div class="jumbotron text-center">
     <h1>
       <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo" />
-      <span translate>Hello world !</span>
+      <span translate>Hello</span>
+      <span>Michael</span>
+      <span>!</span>
     </h1>
-    <app-loader [isLoading]="isLoading"></app-loader>
-    <q [hidden]="isLoading">{{ quote }}</q>
+    <p>Tienes dos opciones para escoger...</p>
+  </div>
+  <div class="row container-cards">
+    <div class="col-sm-2">
+      <div class="card mb-3" routerLink="/products">
+        <img src="assets/products.jpg" class="card-img-left" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title text-center">Administrar Productos</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="card mb-3" routerLink="/characteristics">
+        <img src="assets/characteristics.jpg" class="card-img-right" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title text-center">Administrar Características</h5>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

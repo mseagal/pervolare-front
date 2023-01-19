@@ -7,3 +7,24 @@ q {
   font-size: 1.2rem;
   quotes: "« " " »";
 }
+
+.container-cards {
+  justify-content: center;
+}
+
+.card {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: none;
+}
+
+.card:hover {
+  transform: scale(0.98);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.card-img-left,
+.card-img-right {
+  width: 100%;
+  object-fit: cover;
+}
