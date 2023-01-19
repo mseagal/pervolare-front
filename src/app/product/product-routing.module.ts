@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { CreateProductComponent } from './create-product/create-product.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ProductComponent } from './product.component';
 
 const routes: Routes = [

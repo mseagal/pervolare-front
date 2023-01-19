@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row container-card">
+    <div class="col-8">
+      <div>
+        <form *ngIf="productForm" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+          <div class="form-row row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Nombre</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Nombre" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Valor</label>
+              <input type="number" class="form-control" formControlName="value" placeholder="Valor" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Descripción</label>
+            <textarea class="form-control" formControlName="description" rows="3"></textarea>
+          </div>
+          <div class="row">
+            <div class="col-1">
+              <button type="submit" class="btn btn-primary mt-3" [disabled]="productForm.invalid">Crear</button>
+            </div>
+            <div class="col-1">
+              <button type="button" class="btn btn-secondary mt-3" routerLink="/products">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

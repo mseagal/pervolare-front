@@ -16,14 +16,18 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>2500</td>
+              <tr *ngFor="let product of products">
+                <th scope="row">{{ product.id }}</th>
+                <td>{{ product.name }}</td>
+                <td>{{ product.value }}</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="btn btn-outline-primary">Ver</button>
-                    <button type="button" class="btn btn-outline-primary">Eliminar</button>
+                    <button type="button" class="btn btn-outline-primary" [routerLink]="['/products', product.id]">
+                      Ver
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" (click)="deleteProduct(product.id)">
+                      Eliminar
+                    </button>
                   </div>
                 </td>
               </tr>
