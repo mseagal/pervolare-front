@@ -1,0 +1,31 @@
+{
+  "generator-ngx-rocket": {
+    "version": "11.0.0",
+    "props": {
+      "location": "path",
+      "strict": true,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "usePrefix": true,
+      "appName": "pervolare-front",
+      "target": ["web"],
+      "ui": "bootstrap",
+      "features": ["auth", "lazy"],
+      "languages": ["en-US", "es-ES"],
+      "tools": ["prettier"],
+      "utility": [],
+      "deploy": "none",
+      "projectName": "pervolare-front",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": [],
+      "pwa": false,
+      "auth": true,
+      "lazy": true,
+      "e2e": false,
+      "cypress": false,
+      "angulartics": false
+    }
+  }
+}
