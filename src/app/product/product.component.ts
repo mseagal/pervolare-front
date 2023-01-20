@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AlertService } from '@app/@shared/alert.service';
 import { Product } from '@app/interfaces/product/product.interface';
 import { ProductService } from './services/product.service';
 
@@ -10,7 +11,7 @@ import { ProductService } from './services/product.service';
 export class ProductComponent implements OnInit, AfterViewInit {
   products: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private alertService: AlertService) {}
 
   ngOnInit(): void {}
 
@@ -22,10 +23,9 @@ export class ProductComponent implements OnInit, AfterViewInit {
     this.productService.getAllProducts().subscribe({
       next: (data) => {
         this.products = data;
-        console.log(data);
       },
       error: () => {
-        alert('Ha ocurrido un error');
+        this.alertService.showAlert('No se pudo obtener los productos', '', 'error');
       },
     });
   }
@@ -33,11 +33,11 @@ export class ProductComponent implements OnInit, AfterViewInit {
   deleteProduct(id: number) {
     this.productService.deleteProduct(id).subscribe({
       next: () => {
-        console.log('eliminado correctamente');
+        this.alertService.showAlert('Eliminado correctamente', '', 'success');
         this.getAllProducts();
       },
       error: () => {
-        console.log('error al eliminar');
+        this.alertService.showAlert('No se pudo eliminar', '', 'error');
       },
     });
   }

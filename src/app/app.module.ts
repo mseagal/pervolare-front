@@ -38,11 +38,6 @@ import { TokenInterceptor } from './@shared/http/token.interceptor';
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ErrorHandlerInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
     },

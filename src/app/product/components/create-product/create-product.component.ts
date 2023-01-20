@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertService } from '@app/@shared/alert.service';
 import { CreateProduct } from '@app/interfaces/product/create-product.inteface';
 import { ProductService } from '@app/product/services/product.service';
 
@@ -16,7 +17,12 @@ export class CreateProductComponent implements OnInit {
     description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
   });
 
-  constructor(private productService: ProductService, private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -24,15 +30,19 @@ export class CreateProductComponent implements OnInit {
     if (this.productForm.valid) {
       this.productService.createProduct(this.productForm.value as any).subscribe({
         next: () => {
-          console.log('creado correctamente');
+          this.alertService.showAlert('Creado Correctamente', '', 'success');
           this.router.navigate(['/products']);
         },
-        error: () => {
-          console.log('ha ocurrido un error');
+        error: (error) => {
+          if (error.status == 400) {
+            this.alertService.showAlert('Datos Inválidos', 'Por favor verifica los datos', 'warning');
+          } else {
+            this.alertService.showAlert('Error', 'No se pudo crear el producto', 'error');
+          }
         },
       });
     } else {
-      console.log('form invalido');
+      this.alertService.showAlert('Datos Inválidos', 'Por favor verifica los datos', 'warning');
     }
   }
 }

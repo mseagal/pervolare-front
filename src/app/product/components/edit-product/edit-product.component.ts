@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '@app/@shared/alert.service';
 import { ProductService } from '@app/product/services/product.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class EditProductComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {
     this.productId = this.activatedRoute.snapshot.params['id'];
   }
@@ -43,7 +45,7 @@ export class EditProductComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.log('ha ocurrido un error al obtener el registro');
+        this.alertService.showAlert('Error', 'Ha ocurrido un error al obtener el registro', 'error');
         this.router.navigate(['/products']);
       },
     });
@@ -53,15 +55,19 @@ export class EditProductComponent implements OnInit {
     if (this.productForm.valid) {
       this.productService.updateProduct(this.productId, this.productForm.value as any).subscribe({
         next: () => {
-          console.log('ACtualizado correctamente');
+          this.alertService.showAlert('Actualizado Correctamente', '', 'success');
           this.router.navigate(['/products']);
         },
         error: (error) => {
-          console.log('ha ocurrido un error al actualizar el registro', error);
+          if (error.status == 400) {
+            this.alertService.showAlert('Datos Inválidos', 'Por favor verifica los datos', 'warning');
+          } else {
+            this.alertService.showAlert('Error', 'No se pudo actualizar el producto', 'error');
+          }
         },
       });
     } else {
-      console.log('Formulario inválido');
+      this.alertService.showAlert('Datos Inválidos', 'Por favor verifica los datos', 'warning');
     }
   }
 }

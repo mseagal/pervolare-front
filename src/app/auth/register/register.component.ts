@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '@app/@shared/alert.service';
 import { environment } from '@env/environment';
 import { finalize } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService
   ) {
     this.createForm();
   }
@@ -47,11 +49,15 @@ export class RegisterComponent implements OnInit {
       )
       .subscribe({
         next: () => {
-          console.log('registrado correctamente');
+          this.alertService.showAlert('Registrado correctamente', 'Ahora puedes iniciar sesión', 'success');
           this.router.navigate(['/login']);
         },
         error: (error) => {
-          console.log('Ha ocurrido un error. Intente de nuevo', error);
+          if (error.status == 400) {
+            this.alertService.showAlert('Datos Inválidos', 'Por favor verifica los datos', 'warning');
+          } else {
+            this.alertService.showAlert('Error', 'No se pudo realizar el registro', 'error');
+          }
         },
       });
   }

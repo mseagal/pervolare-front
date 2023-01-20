@@ -28,6 +28,6 @@ export class TokenInterceptor implements HttpInterceptor {
       this.credentialService.setCredentials();
       this.router.navigate(['/login']);
     }
-    return throwError(() => new Error('Token interceptor fails'));
+    return throwError(() => err);
   }
 }

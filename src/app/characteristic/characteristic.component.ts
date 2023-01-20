@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from '@app/@shared/alert.service';
 import { Characteristic } from '@app/interfaces/characteristic/characteristic.interface';
 import { CharacteristicService } from './services/characteristic.service';
 
@@ -10,7 +11,7 @@ import { CharacteristicService } from './services/characteristic.service';
 export class CharacteristicComponent implements OnInit {
   characteristics: Characteristic[] = [];
 
-  constructor(private characteristicService: CharacteristicService) {}
+  constructor(private characteristicService: CharacteristicService, private alertService: AlertService) {}
 
   ngOnInit(): void {}
 
@@ -25,7 +26,7 @@ export class CharacteristicComponent implements OnInit {
         console.log(data);
       },
       error: () => {
-        alert('Ha ocurrido un error');
+        this.alertService.showAlert('No se pudo obtener los atributos', '', 'error');
       },
     });
   }
@@ -33,11 +34,11 @@ export class CharacteristicComponent implements OnInit {
   deleteCharacteristic(id: number) {
     this.characteristicService.deleteCharacteristic(id).subscribe({
       next: () => {
-        console.log('eliminado correctamente');
+        this.alertService.showAlert('Eliminado correctamente', '', 'success');
         this.getAllCharacteristics();
       },
       error: () => {
-        console.log('error al eliminar');
+        this.alertService.showAlert('No se pudo eliminar', '', 'error');
       },
     });
   }
