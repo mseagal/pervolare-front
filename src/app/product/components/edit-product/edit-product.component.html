@@ -1,6 +1,9 @@
 <div class="container-fluid">
   <div class="row container-card">
     <div class="col-8">
+      <h2>Informacion del producto</h2>
+    </div>
+    <div class="col-8">
       <div>
         <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
           <div class="form-row row">
@@ -22,11 +25,44 @@
               <button type="submit" class="btn btn-warning mt-3" [disabled]="productForm.invalid">Actualizar</button>
             </div>
             <div class="col-2">
-              <button type="button" class="btn btn-secondary mt-3" routerLink="/products">Cancelar</button>
+              <button type="button" class="btn btn-secondary mt-3" routerLink="/products">Regresar</button>
             </div>
           </div>
         </form>
       </div>
+    </div>
+    <div class="col-8 mt-4">
+      <h2>Atributos del producto</h2>
+    </div>
+    <div class="col-8">
+      <div>
+        <form>
+          <div class="form-row row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Atributos</label>
+              <select class="form-select" aria-label="Default select example" [formControl]="selectCharacteristicInput">
+                <option *ngFor="let item of selectCharacteristicType" value="{{ item.value }}">{{ item.name }}</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <button
+                type="button"
+                class="btn btn-success mt-3"
+                style="color: white"
+                [disabled]="selectCharacteristicInput.invalid"
+                (click)="addCharacteristicToProduct()"
+              >
+                Agregar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-8 mt-4">
+      <ul style="list-style: none">
+        <li *ngFor="let combination of combinationsOfCharacteristic">{{ combination }}</li>
+      </ul>
     </div>
   </div>
 </div>
