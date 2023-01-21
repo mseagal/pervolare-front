@@ -18,7 +18,7 @@ export class CreateCharacteristicComponent implements OnInit {
     { value: 'COLOR', name: 'Color' },
     { value: 'SIZE', name: 'Talla' },
     { value: 'BRAND', name: 'Marca' },
-    { value: 'MANUFACTURER', name: 'Fabricante' },
+    { value: 'MANUFACTURE', name: 'Fabricante' },
   ];
 
   constructor(
